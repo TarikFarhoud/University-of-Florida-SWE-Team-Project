@@ -1,38 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <title>Homepage</title>
 </head>
+
 <body id="homepage">
-    <h1>
-        The Plastic Pod
-    </h1>
-    <img src="homepage_header.jpg" class="header-img">
-    <ul class="nav-bar">
-        <li class="nav-item"><a href="index.html">Homepage</a></li>
-        <li class="nav-item"><a href="point_bank.html.">Point Bank</a></li>
-        <li class="nav-item"><a href="shop.html">Shop</a></li>
-        <li class="nav-item"><a href="rec_info.html">Recycling Information</a></li>
-        <li class="nav-item"><a href="leaderboard.html">Leaderboard</a></li>
-        <li class="nav-item"><a href="profile.html">Profile</a></li>
-        <li class="nav-item"><a href="login.html">Login</a></li>
-        <li class="nav-item"><a href="register.html">Register</a></li>
-    </ul>
-    <div class="main-container">
-        <h2>
-            Join others and be motivated to recycle your plastic!
-        </h2>
-        <ul class="bullet-list">
-            <li class="bullet-item">Track your plastic waste.</li>
-            <li class="bullet-item">Lower your plastic waste footprint.</li>
-            <li class="bullet-item">Win virtual prizes via a virtual point system.</li>
-            <li class="bullet-item">Complete a personal user profile.</li>
-            <li class="bullet-item">Compete with others on a leaderboard.</li>
-            <li class="bullet-item">See what your recycled plastic can become.</li>
-        </ul>
-    </div>   
+    <div class="main">
+        <div class="app-container">
+            <h1>
+                The Plastic Pod
+            </h1>
+            <ul class="nav-bar">
+                <li class="nav-item"><button id="buttonNavHome">Homepage</button></li>
+                <li class="nav-item"><button id="buttonNavPointBank">Point Bank</button></li>
+                <li class="nav-item"><button id="buttonNavShop">Shop</button></li>
+                <li class="nav-item"><button id="buttonNavInfo">Recycling Information</button></li>
+                <li class="nav-item"><button id="buttonNavLeaderboard">Leaderboard</button></li>
+                <li class="nav-item"><button id="buttonNavProfile">Profile</button></li>
+                <li class="nav-item"><button id="buttonNavLogin">Login</button></li>
+                <li class="nav-item"><button id="buttonNavRegister">Register</button></li>
+            </ul>
+            <div id="app-content"></div>
+        </div>
+    </div>
+    <script src="content.js"></script>
 </body>
+
 </html>
