@@ -5,6 +5,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
             document.getElementById('app-content').innerHTML = html;
         })
 
+        getNav();
+});
+
+function getNav() {
     document.getElementById("buttonNavHome").onclick = function () {
         fetch('home.html')
             .then(response => response.text())
@@ -59,9 +63,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             .then(html => {
                 document.getElementById('app-content').innerHTML = html;
 
-                document.getElementById("buttonSignUpLogin").onclick = function(){
-                    location.href = "register.html";
-                };
+                getNav();
             })
     };
 
@@ -71,16 +73,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
             .then(html => {
                 document.getElementById('app-content').innerHTML = html;
 
-                document.getElementById("buttonSignInRegister").onclick = function(){
-                    location.href = "login.html";
+                getNav();
+
+                document.getElementById("buttonNavLogin2").onclick = function () {
+                    fetch('login.html')
+                        .then(response => response.text())
+                        .then(html => {
+                            document.getElementById('app-content').innerHTML = html;
+            
+                            getNav();
+                        })
                 };
             })
     };
-
-    fetch('point_bank.html')
-        .then(response => response.text())
-        .then(html => {
-            document.getElementById('app-content').innerHTML = html;
-        })
-
-});
+}

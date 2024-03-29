@@ -109,9 +109,12 @@ h2 {
 
 .register-container {
     width: 100%;
+    display: flex;
     background-size: cover;
     background-image: url(images/forest.jpeg);
     background-position: center;
+    align-items: center;
+    justify-content: center;
 }
 
 /* .input-box {
@@ -129,14 +132,12 @@ h2 {
 .input-box {
     text-align: center;
     padding: 60px 60px 70px;
-    transform: translate(-50%,-50%);
     background: transparent;
     border: 2px solid rgba(255,255,255, .2);
     backdrop-filter: blur(20px);
     box-shadow: 0 0 10px rgba(0,0,0, .2);
     top: 50%;
     left: 50%;
-    position: absolute;
     width: 90%;
     max-width: 350px;
 }
