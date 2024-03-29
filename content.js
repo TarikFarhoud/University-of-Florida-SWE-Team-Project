@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 function getNav() {
     // Homepage Button:
     document.getElementById('buttonNavHome').onclick = function () {
-        fetch('href=home.html')
+        fetch('home.html')
             .then(response => response.text())
             .then(html => {
                 document.getElementById('app-content').innerHTML = html;
