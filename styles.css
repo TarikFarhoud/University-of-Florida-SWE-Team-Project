@@ -167,12 +167,17 @@ h2 {
     background: black;
 }
 
+::placeholder {
+    color: white;
+}
+
 input {
     width: 100%;
     outline: 0;
     border: 0;
     background: transparent;
     padding: 18px 15px;
+    color: white;
 }
 
 .input-line i {
@@ -215,11 +220,9 @@ form p a {
     height: 210px;
 }
 
-.button-user-input-layout button.disable {
-    background: whitesmoke;
-    color: white;
-}
+.register-button {
 
+}
 
 
 
