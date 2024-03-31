@@ -30,23 +30,19 @@ function getNav() {
     };
 
     document.getElementById("buttonNavLogin").onclick = function () {
-        switchPage('login.html');
-    };
-
-    document.getElementById("buttonNavRegister").onclick = function () {
-        switchPage('register.html').then(() => {
-            document.getElementById("buttonNavLogin2").onclick = function () {
-                switchPage('login.html');
+        switchPage('login.html').then(() => {
+            document.getElementById("buttonNewRegister").onclick = function () {
+                switchPage('register.html').then(() => {
+                    document.getElementById('buttonSignUpRegister').onclick = function () {
+                        const username = document.getElementById('inputUsername').value;
+                        const email = document.getElementById('inputEmail').value;
+                        const password = document.getElementById('inputPassword').value;
+                        registerUser(username, email, password);
+                    };
+                });
             };
-
-            document.getElementById('buttonSignUpRegister').onclick = function () {
-                const username = document.getElementById('inputUsername').value;
-                const email = document.getElementById('inputEmail').value;
-                const password = document.getElementById('inputPassword').value;
-                registerUser(username, email, password);
-            };
-        })
-    };
+        });
+    }
 }
 
 function switchPage(page) {
