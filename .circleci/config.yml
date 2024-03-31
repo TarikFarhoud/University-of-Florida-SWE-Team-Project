@@ -21,6 +21,9 @@ jobs:
       - run:
           name: Install Dependancies
           command: npm install
+      - run:
+          name: Run Parcel
+          command: parcel index.html 
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/workflows/ & https://circleci.com/docs/configuration-reference/#workflows
