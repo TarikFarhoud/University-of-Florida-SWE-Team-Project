@@ -118,7 +118,15 @@ function getNav() {
             .then(html => {
                 document.getElementById('app-content').innerHTML = html;
 
-                getNav();
+                //getNav();
+
+                document.getElementById('buttonNewRegister').onclick = function () {
+                    fetch('register.html')
+                        .then(response => response.text())
+                        .then(html => {
+                            document.getElementById('app-content').innerHTML = html;
+                        })
+                };
             })
     };
 
@@ -130,6 +138,7 @@ function getNav() {
         document.getElementById('buttonNavLogin').style.backgroundColor = '#A8A9AD';
     };
 
+    /*
     // Register Nav. Button:
     document.getElementById('buttonNavRegister').onclick = function () {
         fetch('register.html')
@@ -158,13 +167,5 @@ function getNav() {
     document.getElementById('buttonNavRegister').onmouseout = function () {
         document.getElementById('buttonNavRegister').style.backgroundColor = '#A8A9AD';
     };
-
-    document.getElementById('buttonNewRegister').onclick = function () {
-        fetch('register.html')
-            .then(response => response.text())
-            .then(html => {
-                document.getElementById('app-content').innerHTML = html;
-            })
-
-    };
+    */
 }
