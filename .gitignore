@@ -44,15 +44,7 @@ bower_components
 
 # Compiled binary addons (http://nodejs.org/api/addons.html)
 build/Release
-dist/content.b60ea27a.js
-dist/content.b60ea27a.js.map
-dist/firebase.512978bf.js
-dist/firebase.512978bf.js.map
-
-dist/styles.8986bff4.css
-dist/styles.8986bff4.css.map
-dist/styles.8986bff4.js
-dist/styles.8986bff4.js.map
+dist
 
 # Dependency directories
 node_modules/
