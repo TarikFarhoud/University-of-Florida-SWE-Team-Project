@@ -1,7 +1,7 @@
 version: 2.1
 
 jobs:
-  test:
+  build:
     docker:
       - image: cimg/node:21.6.2
 
@@ -20,4 +20,4 @@ jobs:
 workflows:
   deploy:
     jobs:
-      - test
+      - build
