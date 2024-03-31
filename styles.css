@@ -68,19 +68,17 @@ h2 {
 }
 
 .nav-item button {
-    padding: 20px;
+    padding: 10px;
     color: black;
     text-align: center;
     border-radius: 25px;
     background-color: #A8A9AD;
     box-shadow: 3px 3px 10px rgb(79, 79, 79);
     margin: 10px;
-    font-size: 16pt;
+    font-size: 14pt;
     text-decoration: none;
-}
-
-.nav-item a:hover {
-    background-color: #848482;
+    height: 50px;
+    cursor: pointer;
 }
 
 .main-container {
@@ -158,12 +156,17 @@ h2 {
     background: white;
 }
 
+::placeholder {
+    color: white;
+}
+
 input {
     width: 100%;
     outline: 0;
     border: 0;
     background: transparent;
     padding: 18px 15px;
+    color: white;
 }
 
 .input-line i {
@@ -206,11 +209,9 @@ form p a {
     height: 210px;
 }
 
-.button-user-input-layout button.disable {
-    background: whitesmoke;
-    color: white;
-}
+.register-button {
 
+}
 
 
 
