@@ -1,4 +1,5 @@
 import { initializeApp } from "firebase/app";
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCQrtfgyodGtwzJ47Af8rit8VIi_SEkEK0",
@@ -10,3 +11,26 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+const auth = getAuth();
+
+
+function registerUser(inputUsername, inputEmail, inputPassword) {
+  createUserWithEmailAndPassword(auth, inputEmail, inputPassword)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      updateProfile(auth.currentUser, {
+        displayName: inputUsername
+      }).then(() => {
+        console.log('Username successfully updated')
+      }).catch((error) => {
+        console.log('Error adding username:', error);
+      });
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log('Error:', errorCode, ',', errorMessage);
+    });
+}
+
+export { registerUser };

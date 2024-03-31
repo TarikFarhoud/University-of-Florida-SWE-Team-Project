@@ -1,7 +1,7 @@
-document.addEventListener('DOMContentLoaded', (event) => {
-    switchPage('home.html');
+import { registerUser } from "./firebase.js";
 
-    getNav();
+document.addEventListener('DOMContentLoaded', (event) => {
+    switchPage('home.html').then(() => { getNav(); });
 });
 
 function getNav() {
@@ -37,6 +37,13 @@ function getNav() {
         switchPage('register.html').then(() => {
             document.getElementById("buttonNavLogin2").onclick = function () {
                 switchPage('login.html');
+            };
+
+            document.getElementById('buttonSignUpRegister').onclick = function () {
+                const username = document.getElementById('inputUsername').value;
+                const email = document.getElementById('inputEmail').value;
+                const password = document.getElementById('inputPassword').value;
+                registerUser(username, email, password);
             };
         })
     };
