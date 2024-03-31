@@ -23,7 +23,7 @@ jobs:
           command: npm install
       - run:
           name: Install Parcel
-          command: npm install parcel
+          command: npm install -g parcel-bundler
       - run:
           name: Run Parcel
           command: parcel index.html 
