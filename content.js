@@ -1,89 +1,54 @@
 document.addEventListener('DOMContentLoaded', (event) => {
-    fetch('home.html')
-        .then(response => response.text())
-        .then(html => {
-            document.getElementById('app-content').innerHTML = html;
-        })
+    switchPage('home.html');
 
-        getNav();
+    getNav();
 });
 
 function getNav() {
     document.getElementById("buttonNavHome").onclick = function () {
-        fetch('home.html')
-            .then(response => response.text())
-            .then(html => {
-                document.getElementById('app-content').innerHTML = html;
-            })
+        switchPage('home.html');
     };
 
     document.getElementById("buttonNavPointBank").onclick = function () {
-        fetch('point_bank.html')
-            .then(response => response.text())
-            .then(html => {
-                document.getElementById('app-content').innerHTML = html;
-            })
+        switchPage('point_bank.html');
     };
 
     document.getElementById("buttonNavShop").onclick = function () {
-        fetch('shop.html')
-            .then(response => response.text())
-            .then(html => {
-                document.getElementById('app-content').innerHTML = html;
-            })
+        switchPage('shop.html');
     };
 
     document.getElementById("buttonNavInfo").onclick = function () {
-        fetch('rec_info.html')
-            .then(response => response.text())
-            .then(html => {
-                document.getElementById('app-content').innerHTML = html;
-            })
+        switchPage('rec_info.html');
     };
 
     document.getElementById("buttonNavLeaderboard").onclick = function () {
-        fetch('leaderboard.html')
-            .then(response => response.text())
-            .then(html => {
-                document.getElementById('app-content').innerHTML = html;
-            })
+        switchPage('leaderboard.html');
     };
 
     document.getElementById("buttonNavProfile").onclick = function () {
-        fetch('profile.html')
-            .then(response => response.text())
-            .then(html => {
-                document.getElementById('app-content').innerHTML = html;
-            })
+        switchPage('profile.html');
     };
 
     document.getElementById("buttonNavLogin").onclick = function () {
-        fetch('login.html')
-            .then(response => response.text())
-            .then(html => {
-                document.getElementById('app-content').innerHTML = html;
-
-                getNav();
-            })
+        switchPage('login.html');
     };
 
     document.getElementById("buttonNavRegister").onclick = function () {
-        fetch('register.html')
+        switchPage('register.html').then(() => {
+            document.getElementById("buttonNavLogin2").onclick = function () {
+                switchPage('login.html');
+            };
+        })
+    };
+}
+
+function switchPage(page) {
+    return new Promise((resolve, reject) => {
+        fetch(page)
             .then(response => response.text())
             .then(html => {
                 document.getElementById('app-content').innerHTML = html;
-
-                getNav();
-
-                document.getElementById("buttonNavLogin2").onclick = function () {
-                    fetch('login.html')
-                        .then(response => response.text())
-                        .then(html => {
-                            document.getElementById('app-content').innerHTML = html;
-            
-                            getNav();
-                        })
-                };
-            })
-    };
+                resolve("Page loaded");
+            });
+    })
 }
