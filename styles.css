@@ -112,7 +112,6 @@ h2 {
     background-position: center;
     align-items: center;
     justify-content: center;
-    padding: 50px;
 }
 
 .input-box {
@@ -127,6 +126,7 @@ h2 {
     left: 50%;
     width: 90%;
     max-width: 350px;
+    margin: 20px;
 }
 
 .input-box h1 {
@@ -149,10 +149,9 @@ h2 {
 }
 
 .input-line {
-    margin: 30px 0;
+    margin: 30px;
     border-radius: 5px;
     align-items: center;
-    display: flex;
     background: white;
 }
 
@@ -166,7 +165,6 @@ input {
     border: 0;
     background: transparent;
     padding: 18px 15px;
-    color: white;
 }
 
 .input-line i {
@@ -184,29 +182,43 @@ form p a {
 }
 
 .button-user-input-layout {
-    display: flex;
     justify-content: center;
+    text-align: center;
     width: 100%;
 }
 
 .button-user-input-layout button {
     border: 0;
-    outline: 10;
+    outline: 10px;
     cursor: pointer;
-    transition: background 1s;
-    flex-basis: 49%;
     background: white;
     color: black;
     height: 40px;
     border-radius: 20px;
+    border-color: black;
+    width: 200px;
+    margin: 10px;
+    margin-top: 0;
+}
+
+.button-user-input-layout button:hover {
+    background-color: lightgray;
+}
+
+#buttonNavLogin2 {
+    background-color: white;
+}
+
+#buttonNavLogin2:hover {
+    background-color: lightgray;
+    cursor: pointer;
 }
 
 .input-collection {
-    height: 290px;
 }
 
 .input-collection-login {
-    height: 210px;
+    
 }
 
 
