@@ -1,4 +1,4 @@
-import { registerUser } from "./firebase.js";
+import { registerUser, loginUser } from "./firebase.js";
 
 document.addEventListener('DOMContentLoaded', (event) => {
     switchPage('home.html').then(() => { getNav(); });
@@ -67,18 +67,29 @@ function getNav() {
 
     document.getElementById('buttonNavLogin').onclick = function () {
         switchPage('login.html').then(() => {
+            document.getElementById('buttonSignInLogin').onclick = function () {
+                const email = document.getElementById('inputEmail').value;
+                const password = document.getElementById('inputPassword').value;
+                loginUser(email, password).then((message) => {
+                    document.getElementById('responseText').textContent = message;
+                    console.log('Response shown:', message);
+                });
+            };
+
             document.getElementById('buttonNewRegister').onclick = function () {
                 switchPage('register.html').then(() => {
                     document.getElementById('buttonSignUpRegister').onclick = function () {
                         const username = document.getElementById('inputUsername').value;
                         const email = document.getElementById('inputEmail').value;
                         const password = document.getElementById('inputPassword').value;
-                        registerUser(username, email, password);
+                        registerUser(username, email, password).then((message) => {
+                            document.getElementById('responseText').textContent = message;
+                            console.log('Response shown:', message);
+                        });;
                     };
 
                     document.getElementById('buttonNavLogin2').onclick = function () {
-                        switchPage('login.html').then(() =>
-                        {
+                        switchPage('login.html').then(() => {
                             document.getElementById('buttonNavLogin').click();
                         });
                     }

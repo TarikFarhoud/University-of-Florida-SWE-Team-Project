@@ -214,6 +214,13 @@ form p a {
     cursor: pointer;
 }
 
+.error-text {
+    margin-top: 15px;
+    margin-bottom: 25px;
+    font-size: 35;
+    color: white
+}
+
 .input-collection {
 }
 
