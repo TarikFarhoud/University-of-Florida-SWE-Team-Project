@@ -4,12 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recycling/Waste Information</title>
+    <link rel="stylesheet" href="swiper-bundle.min.css">
+    <link rel="stylesheet" href="style.css">
+
 </head>
-<div class="rec-info-body">
-    <div class="swiper-contain">
+<body>
+    <div class="swiper-contain swiper">
         <div class="swiper-cont">
-            <div class="swiper-wrapper">
-                <div class="actual-card">
+            <div class="swiper-wrapper swiper-wrapper">
+                <div class="actual-card swiper-slide">
                     <div class="swiper-image">
                         <span class="overwrap"></span>
                         <div class="actual-card-image-box">
@@ -23,8 +26,22 @@
                     </div>
                 </div>
             </div>
+
         </div>
+
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+
+        
     </div>
+
     
-</div>
+    
+</body>
+
+<script src="functions/swiper-bundle.min.js"></script>
+<script src="functions/script.js"></script>
+
+
 </html>
