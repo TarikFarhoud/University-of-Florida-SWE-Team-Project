@@ -1,8 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\functions"
+    "\\dist",
+    "\\dist\\images",
+    "\\functions",
+    "\\images"
   ],
-  "SelectedNode": "\\.eslintrc.js",
+  "SelectedNode": "\\images",
   "PreviewInSolutionExplorer": false
 }

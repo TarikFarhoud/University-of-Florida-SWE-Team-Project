@@ -1,4 +1,93 @@
 <h1>
     The Point Bank
 </h1>
-<img src="" class="images/header-img">
+
+<!-- The "Point Bank" is used for submitting recyclables for points -->
+<div class="point_bank">
+    <div class="input-box">
+        <!-- Form for submitting recyclables -->
+        <form class="point_submit_form">
+
+            <!-- Object Size -->
+            <div>
+                <label for="plastic_size">Object Size: </label><br>
+                <select id="plastic_size" name="plastic_size" form="point_submit">
+                    <option value="thin">Thin (Wrap or Bag)</option>
+                    <option value="tiny">Tiny (&lt1oz) e.g. straws</option>
+                    <option value="small">Small (1oz - 3oz) e.g. mini bottle</option>
+                    <option value="medium">Medium (3oz - 8oz) e.g. water bottle</option>
+                    <option value="large">Large (8oz - 1lb) e.g. Milk Jug, 2L</option>
+                    <option value="huge">Huge (1lb+) e.g. Shower Curtains</option>
+                </select>
+            </div>
+
+            <!-- Plastic Type/Number -->
+            <div>
+                <label for="plastic_type">Plastic Type/Number: </label><br>
+                <select id="plastic_type" name="plastic_type" form="point_submit">
+                    <option value="pet">#1: PET</option>
+                    <option value="hdpe">#2: HDPE</option>
+                    <option value="pvc">#3: PVC</option>
+                    <option value="ldpe">#4: LDPE</option>
+                    <option value="pp">#5: PP</option>
+                    <option value="ps">#6: PS</option>
+                    <option value="other">#7: Other</option>
+                    <option value="unknown">Unknown</option>
+                </select>
+            </div>
+
+            <!-- Object Type -->
+            <div>
+                <label for="object_type">Object Type: </label><br>
+                <select id="object_type" name="object_type" form="point_submit">
+                    <option value="null">
+                        -- Choose object type if plastic is
+                        unknown --
+                    </option>
+                    <option value="pp">Straw</option>
+                    <option value="pet">Single-Use Drinking/Juice Bottle</option>
+                    <option value="ldpe">Squeezable Bottle</option>
+                    <option value="pp">(Clear) Deli Food Container</option>
+                    <option value="ps">Styrofoam Container</option>
+                    <option value="pp">Yogurt Container</option>
+                    <option value="pp">Syrup Container</option>
+                    <option value="pp">Butter/Margarine Container</option>
+                    <option value="hdpe">Milk Jug</option>
+                    <option value="ldpe">Frozen Food Bag</option>
+                    <option value="ldpe">Bread Bag</option>
+                    <option value="pet">Other (Non Clear) Grocery Food Container</option>
+                    <option value="pvc">Other (Clear) Grocery Food Container</option>
+                    <option value="ldpe">Plastic Wrap</option>
+                    <option value="ldpe">Grocery Bag</option>
+                    <option value="hdpe">Cleaning Container</option>
+                    <option value="hdpe">Chemical/Oil Container</option>
+                    <option value="hdpe">Soap Bottle</option>
+                    <option value="pvc">Pipe</option>
+                    <option value="pvc">Children/Pet Toys</option>
+                    <option value="pvc">Blister Pack</option>
+                    <option value="pvc">Shower Curtains</option>
+                    <option value="pvc">Home Construction Materials</option>
+                    <option value="pp">Disposable Diaper</option>
+                    <option value="pp">Outdoor Carpet</option>
+                    <option value="pp">House Wrap</option>
+                    <option value="pp">Medicine Bottle</option>
+                    <option value="other">Baby Bottle</option>
+                    <option value="ps">CD Case</option>
+                    <option value="other">Disc</option>
+                    <option value="ps">Disposable Silverware</option>
+                    <option value="ps">Insulation</option>
+                    <option value="other">Reusable Water Bottle</option>
+                    <option value="other">Lid</option>
+                    <option value="other">Electrical Part</option>
+                    <option value="pp">Other (Non Clear) Container</option>
+                    <option value="hdpe">Other Plastic Bag</option>
+                </select>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="button-user-input-layout">
+                <button id="point_submit">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
