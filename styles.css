@@ -132,18 +132,6 @@ h2 {
     position: relative;
 }
 
-.input-box h1::after {
-    content: '';
-    position: absolute;
-    left: 50%;
-    bottom: -12px;
-    transform: translateX(-50%);
-    width: 40px;
-    height: 5px;
-    border-radius: 4px;
-    background: white;
-}
-
 .input-line {
     margin: 30px;
     border-radius: 5px;
@@ -217,11 +205,20 @@ form p a {
     color: white
 }
 
-.input-collection {
+.point_bank {
+    width: 100%;
+    display: flex;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url(images\pointbank.gif);
+    background-position: center;
+    align-items: center;
+    justify-content: center;
 }
 
-.input-collection-login {
-    
+.point_submit_form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
 }
-
-
