@@ -1,4 +1,6 @@
-
+html {
+    overflow: scroll;
+}
 
 body {
     background-color: #AFD3E2;
@@ -13,10 +15,10 @@ body {
 }
 
 .app-container {
-    width: 80%;
+    width: 90%;
     height: 90%;
-    border-radius: 100px;
-    background-color: white;
+    border-radius: 70px;
+    background-color: whitesmoke;
     overflow: hidden;
 }
 
@@ -53,7 +55,7 @@ h2 {
     list-style-type: none;
     margin: auto;
     padding: 20px;
-    background-color: white;
+    background-color: whitesmoke;
     width: calc(100% - 100px);
     height: 100px;
     display: flex;
@@ -222,3 +224,94 @@ form p a {
     justify-content: center;
     gap: 20px;
 }
+
+.wrapper-rec-info {
+    justify-content: space-around;
+    width: 70%;
+    display: flex;
+}
+
+.card-rec-info {
+    transition: 0.4s ease-in-out;
+    box-shadow: 0px 6px 9px rgba(0,0,0,0.5);
+    align-items: flex-end;
+    display: flex;
+    position: relative;
+    background: #fff;
+    padding: 32px 16px;
+    height: 359px;
+    width: 279px;
+}
+
+.card-rec-info:hover {
+    transform: translateY(20px);
+}
+
+.card-rec-info:before {
+    transition: 0.5s all;
+    z-index: 2;
+    background: linear-gradient(to bottom, rgba(0,176,155,0.5), rgba(150,201,61,1));
+    height: 100%;
+    width: 100%;
+    display: block;
+    left: 0;
+    top: 0;
+    position: absolute;
+    content: "";
+    opacity: 0;
+}
+
+.card-rec-info:hover:before {
+    opacity: 1;
+}
+
+.card-rec-info img {
+    left: 0;
+    top: 0;
+    position: absolute;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+
+.card-rec-info .info-rec-info {
+    transition: 0.5s all;
+    transform: translateY(30px);
+    opacity: 0;
+    color: #fff;
+    z-index: 3;
+    position: relative;
+}
+
+
+.card-rec-info:hover .info-rec-info {
+    transform: translateY(0px);
+    opacity: 1;
+}
+
+.card-rec-info .info-rec-info h1 {
+    margin: 0;
+}
+
+.card-rec-info .info-rec-info p {
+    margin-bottom: 19px;
+    margin-top: 7px;
+    font-size: 15px;
+    letter-spacing: 1px;
+}
+
+.card-rec-info .info-rec-info .btn-rec-info {
+    transition: 0.4s ease-in-out;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 15px;
+    color: #000;
+    background: #fff;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+.card-rec-info .info-rec-info .btn-rec-info:hover {
+    box-shadow: 0px 7px 10px rgba(0,0,0,0.5);
+}
+
