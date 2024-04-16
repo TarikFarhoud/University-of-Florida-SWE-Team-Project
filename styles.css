@@ -354,6 +354,7 @@ form p a {
 
 .profile-picture {
     display: flex;
+    flex: 1;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
@@ -366,9 +367,17 @@ form p a {
 
 .username-container {
     display: flex;
+    flex: 1;
     align-items: center;
     font-size: 25px;
     margin-left: 30px;
+}
+
+.joined-container {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
 }
 
 .stats-row {

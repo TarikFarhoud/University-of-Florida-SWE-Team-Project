@@ -1,6 +1,6 @@
 import { registerUser, loginUser, isLoggedIn, logoutUser, getUserInfo } from "./firebase.js";
 
-document.addEventListener('DOMContentLoaded', (event) => {
+document.addEventListener('DOMContentLoaded', () => {
     switchPage('home.html').then(() => { getNav(); });
 });
 
@@ -77,7 +77,7 @@ function getNav() {
 }
 
 function navProfile() {
-    switchPage('profile.html').then(() => {
+    switchPage('profile.html').then(async () => {
         if (!isLoggedIn()) {
             document.querySelector('.account-container').style.display = 'none';
             document.getElementById('login_button').onclick = function () {
@@ -89,7 +89,10 @@ function navProfile() {
                 logoutUser();
                 navLogin();
             }
-            document.getElementById('username_placeholder').textContent = getUserInfo().displayName;
+            const info = await getUserInfo();
+            console.log('UserData:', info);
+
+            document.getElementById('username_placeholder').textContent = info.username;
         }
     });
 }
@@ -126,7 +129,7 @@ function navLogin() {
 }
 
 function switchPage(page) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
         fetch(page)
             .then(response => response.text())
             .then(html => {

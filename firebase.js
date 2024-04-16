@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, signOut } from "firebase/auth";
+import { getFirestore, doc, getDoc } from "firebase/firestore";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCQrtfgyodGtwzJ47Af8rit8VIi_SEkEK0",
@@ -12,37 +13,37 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
-
+const db = getFirestore(app);
 
 function registerUser(inputUsername, inputEmail, inputPassword) {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     createUserWithEmailAndPassword(auth, inputEmail, inputPassword)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      updateProfile(auth.currentUser, {
-        displayName: inputUsername
-      }).then(() => {
-        console.log('Username successfully updated')
-        resolve("Account created successfully!");
-      }).catch((error) => {
-        console.log('Error adding username:', error);
-        resolve(error.code);
+      .then(() => {
+        //const user = userCredential.user;
+        updateProfile(auth.currentUser, {
+          displayName: inputUsername
+        }).then(() => {
+          console.log('Username successfully updated')
+          resolve("Account created successfully!");
+        }).catch((error) => {
+          console.log('Error adding username:', error);
+          resolve(error.code);
+        });
+      })
+      .catch((error) => {
+        if (error.code === 'auth/invalid-email') {
+          resolve('Invalid email');
+        } else {
+          resolve(error.code);
+        }
+
       });
-    })
-    .catch((error) => {
-      if (error.code === 'auth/invalid-email') {
-        resolve('Invalid email');
-      } else {
-        resolve(errorCode);
-      }
-      
-    });
   })
 
 }
 
 async function loginUser(inputEmail, inputPassword) {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     signInWithEmailAndPassword(auth, inputEmail, inputPassword)
       .then((userCredential) => {
         console.log('User logged in:', userCredential.user.displayName);
@@ -52,26 +53,41 @@ async function loginUser(inputEmail, inputPassword) {
         if (error.code === 'auth/invalid-email') {
           resolve('Invalid email');
         } else {
-          resolve(error.code);
+          resolve(toString(error.code));
         }
       });
   })
 }
 
 function logoutUser() {
-    auth.signOut();
+  auth.signOut();
 }
 
-function getUserInfo() {
-  if (auth.currentUser) {
-    return auth.currentUser;
-  } else {
-    return {};
-  }
+async function getUserInfo() {
+      const user = auth.currentUser;
+      if (user) {
+        console.log(user);
+        console.log("Display Name:", user.displayName);
+        let data = { username: user.displayName };
+
+        const docRef = doc(db, "users", auth.currentUser.uid);
+        const docSnap = await getDoc(docRef);
+        const docData = docSnap.data();
+
+        data['joinDate'] = docData.creationDate.toDate();
+        data['points'] = docData.points;
+        data['items'] = docData.items;
+
+        console.log("Data:", data);
+
+        return data;
+      } else {
+        console.log("no");
+        return {};
+      }
 }
 
 function isLoggedIn() {
-  console.log(auth.currentUser);
   if (auth.currentUser) {
     return true;
   } else {

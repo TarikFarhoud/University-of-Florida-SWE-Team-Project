@@ -1,19 +1,24 @@
-/**
- * Import function triggers from their respective submodules:
- *
- * const {onCall} = require("firebase-functions/v2/https");
- * const {onDocumentWritten} = require("firebase-functions/v2/firestore");
- *
- * See a full list of supported triggers at https://firebase.google.com/docs/functions
- */
+import { auth } from "firebase-functions";
+import { initializeApp, firestore } from 'firebase-admin';
+initializeApp();
 
-const {onRequest} = require("firebase-functions/v2/https");
-const logger = require("firebase-functions/logger");
+export const addUserToFirestore = auth.user().onCreate((user) => {
+    const db = firestore();
+    let currentDate = new Date();
 
-// Create and deploy your first functions
-// https://firebase.google.com/docs/functions/get-started
-
-// exports.helloWorld = onRequest((request, response) => {
-//   logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+    return db.collection('users').doc(user.uid).set({
+        uid: user.uid,
+        email: user.email,
+        creationDate: currentDate,
+        points: 0,
+        items: 0,
+        
+    })
+        .then(() => {
+            console.log('User added to Firestore');
+            return null;
+        })
+        .catch((error) => {
+            console.error('Error adding user to Firestore', error);
+        });
+});
