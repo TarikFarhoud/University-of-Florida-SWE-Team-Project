@@ -1,4 +1,4 @@
-import { registerUser, loginUser } from "./firebase.js";
+import { registerUser, loginUser, isLoggedIn } from "./firebase.js";
 
 document.addEventListener('DOMContentLoaded', (event) => {
     switchPage('home.html').then(() => { getNav(); });
@@ -56,7 +56,11 @@ function getNav() {
     };
 
     document.getElementById('buttonNavProfile').onclick = function () {
-        switchPage('profile.html');
+        switchPage('profile.html').then(() => {
+            if (!isLoggedIn()) {
+                document.querySelector('.profile-container').style.display = 'none';
+            }
+        });
     };
     document.getElementById('buttonNavProfile').onmouseover = function () {
         document.getElementById('buttonNavProfile').style.backgroundColor = '#848482';

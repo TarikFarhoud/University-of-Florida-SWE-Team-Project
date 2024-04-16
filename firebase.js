@@ -58,4 +58,13 @@ async function loginUser(inputEmail, inputPassword) {
   })
 }
 
-export { registerUser, loginUser };
+function isLoggedIn() {
+  console.log(auth.currentUser);
+  if (auth.currentUser) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+export { registerUser, loginUser, isLoggedIn };
