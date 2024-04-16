@@ -1,4 +1,4 @@
-import { registerUser, loginUser, isLoggedIn } from "./firebase.js";
+import { registerUser, loginUser, isLoggedIn, logoutUser, getUserInfo } from "./firebase.js";
 
 document.addEventListener('DOMContentLoaded', (event) => {
     switchPage('home.html').then(() => { getNav(); });
@@ -56,11 +56,7 @@ function getNav() {
     };
 
     document.getElementById('buttonNavProfile').onclick = function () {
-        switchPage('profile.html').then(() => {
-            if (!isLoggedIn()) {
-                document.querySelector('.profile-container').style.display = 'none';
-            }
-        });
+        navProfile();
     };
     document.getElementById('buttonNavProfile').onmouseover = function () {
         document.getElementById('buttonNavProfile').style.backgroundColor = '#848482';
@@ -70,36 +66,7 @@ function getNav() {
     };
 
     document.getElementById('buttonNavLogin').onclick = function () {
-        switchPage('login.html').then(() => {
-            document.getElementById('buttonSignInLogin').onclick = function () {
-                const email = document.getElementById('inputEmail').value;
-                const password = document.getElementById('inputPassword').value;
-                loginUser(email, password).then((message) => {
-                    document.getElementById('responseText').textContent = message;
-                    console.log('Response shown:', message);
-                });
-            };
-
-            document.getElementById('buttonNewRegister').onclick = function () {
-                switchPage('register.html').then(() => {
-                    document.getElementById('buttonSignUpRegister').onclick = function () {
-                        const username = document.getElementById('inputUsername').value;
-                        const email = document.getElementById('inputEmail').value;
-                        const password = document.getElementById('inputPassword').value;
-                        registerUser(username, email, password).then((message) => {
-                            document.getElementById('responseText').textContent = message;
-                            console.log('Response shown:', message);
-                        });;
-                    };
-
-                    document.getElementById('buttonNavLogin2').onclick = function () {
-                        switchPage('login.html').then(() => {
-                            document.getElementById('buttonNavLogin').click();
-                        });
-                    }
-                });
-            };
-        });
+        navLogin();
     }
     document.getElementById('buttonNavLogin').onmouseover = function () {
         document.getElementById('buttonNavLogin').style.backgroundColor = '#848482';
@@ -107,6 +74,55 @@ function getNav() {
     document.getElementById('buttonNavLogin').onmouseout = function () {
         document.getElementById('buttonNavLogin').style.backgroundColor = '#A8A9AD';
     };
+}
+
+function navProfile() {
+    switchPage('profile.html').then(() => {
+        if (!isLoggedIn()) {
+            document.querySelector('.account-container').style.display = 'none';
+            document.getElementById('login_button').onclick = function () {
+                navLogin();
+            }
+        } else {
+            document.querySelector('.logged-out-container').style.display = 'none';
+            document.getElementById('logout_button').onclick = function () {
+                logoutUser();
+                navLogin();
+            }
+            document.getElementById('username_placeholder').textContent = getUserInfo().displayName;
+        }
+    });
+}
+
+function navLogin() {
+    switchPage('login.html').then(() => {
+        document.getElementById('buttonSignInLogin').onclick = function () {
+            const email = document.getElementById('inputEmail').value;
+            const password = document.getElementById('inputPassword').value;
+            loginUser(email, password).then((message) => {
+                document.getElementById('responseText').textContent = message;
+                console.log('Response shown:', message);
+            });
+        };
+
+        document.getElementById('buttonNewRegister').onclick = function () {
+            switchPage('register.html').then(() => {
+                document.getElementById('buttonSignUpRegister').onclick = function () {
+                    const username = document.getElementById('inputUsername').value;
+                    const email = document.getElementById('inputEmail').value;
+                    const password = document.getElementById('inputPassword').value;
+                    registerUser(username, email, password).then((message) => {
+                        document.getElementById('responseText').textContent = message;
+                        console.log('Response shown:', message);
+                    });
+                };
+
+                document.getElementById('buttonNavLogin2').onclick = function () {
+                    navLogin();
+                }
+            });
+        };
+    });
 }
 
 function switchPage(page) {

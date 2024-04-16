@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, signOut } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCQrtfgyodGtwzJ47Af8rit8VIi_SEkEK0",
@@ -58,6 +58,18 @@ async function loginUser(inputEmail, inputPassword) {
   })
 }
 
+function logoutUser() {
+    auth.signOut();
+}
+
+function getUserInfo() {
+  if (auth.currentUser) {
+    return auth.currentUser;
+  } else {
+    return {};
+  }
+}
+
 function isLoggedIn() {
   console.log(auth.currentUser);
   if (auth.currentUser) {
@@ -67,4 +79,4 @@ function isLoggedIn() {
   }
 }
 
-export { registerUser, loginUser, isLoggedIn };
+export { registerUser, loginUser, isLoggedIn, logoutUser, getUserInfo };

@@ -92,6 +92,12 @@ h2 {
     padding-bottom: 20px;
 }
 
+.app-content {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
 .bullet-list {
     font-size: 14pt;
     text-align: left;
@@ -322,6 +328,11 @@ form p a {
     justify-content: center;
 }
 
+.account-container {
+    display: flex;
+    flex-direction: column;
+}
+
 .profile-container {
     display: flex;
     flex-direction: column;
@@ -330,7 +341,7 @@ form p a {
     padding: 25px;
     width: 500px;
     height: 300px;
-    margin-bottom: 400px;
+    margin-bottom: 30px;
     background-color: #dbdbdb;
     align-items: center;
 }
@@ -395,4 +406,10 @@ form p a {
     flex: 1;
     flex-direction: column;
     font-size: 20px;
+}
+
+.logged-out-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
