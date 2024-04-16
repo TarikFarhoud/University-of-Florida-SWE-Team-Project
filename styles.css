@@ -315,3 +315,42 @@ form p a {
     box-shadow: 0px 7px 10px rgba(0,0,0,0.5);
 }
 
+.shop_frame {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    gap: 20px;
+    background-image: url(images/coastal.jpg);
+    background-size: cover;
+    padding: 150px;
+}
+
+.shop_item {
+    width: 100px;
+    height: 150px;
+    padding: 20px;
+    border: solid;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    gap: 10px;
+    color: white;
+}
+
+.shop_item p {
+    margin: 0;
+}
+
+.shop_item button {
+    width: 70%;
+    align-self: center;
+    border-radius: 20px;
+    border-width: 1px;
+    cursor: pointer;
+}
+
+.shop_item button:hover {
+    background-color: lightgray;
+}
