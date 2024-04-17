@@ -1,5 +1,7 @@
 import { registerUser, loginUser, isLoggedIn, logoutUser, getUserInfo } from "./firebase.js";
 
+const monthConvert = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
 document.addEventListener('DOMContentLoaded', () => {
     switchPage('home.html').then(() => { getNav(); });
 });
@@ -76,6 +78,7 @@ function getNav() {
     };
 }
 
+// Profile Content Script
 function navProfile() {
     switchPage('profile.html').then(async () => {
         if (!isLoggedIn()) {
@@ -89,14 +92,17 @@ function navProfile() {
                 logoutUser();
                 navLogin();
             }
-            const info = await getUserInfo();
-            console.log('UserData:', info);
+            const userInfo = await getUserInfo();
 
-            document.getElementById('username_placeholder').textContent = info.username;
+            document.getElementById('username_placeholder').textContent = userInfo.username;
+            document.getElementById('joined_placeholder').textContent = monthConvert[userInfo.joinDate.getMonth()] + " " + userInfo.joinDate.getDate() + " " + userInfo.joinDate.getFullYear();
+            document.getElementById('points_placeholder').textContent = userInfo.points;
+            document.getElementById('items_placeholder').textContent = userInfo.items;
         }
     });
 }
 
+// Login Content Script
 function navLogin() {
     switchPage('login.html').then(() => {
         document.getElementById('buttonSignInLogin').onclick = function () {

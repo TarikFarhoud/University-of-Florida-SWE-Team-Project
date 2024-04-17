@@ -497,7 +497,6 @@ form p a {
 
 .joined-container {
     display: flex;
-    flex: 1;
     align-items: center;
     justify-content: center;
 }
@@ -519,24 +518,8 @@ form p a {
     flex: 1;
     flex-direction: column;
     font-size: 20px;
-}
-
-.number-column {
-    display: flex;
     align-items: center;
-    height: 100%;
-    flex: 1;
-    flex-direction: column;
-    font-size: 20px;
-}
-
-.rank-column {
-    display: flex;
-    align-items: center;
-    height: 100%;
-    flex: 1;
-    flex-direction: column;
-    font-size: 20px;
+    justify-content: center;
 }
 
 .logged-out-container {
