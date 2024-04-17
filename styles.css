@@ -362,7 +362,6 @@ form p a {
     border: solid;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     text-align: center;
     gap: 10px;
@@ -379,6 +378,7 @@ form p a {
     border-radius: 20px;
     border-width: 1px;
     cursor: pointer;
+    z-index: 5;
 }
 
 .shop_item button:hover {
@@ -535,4 +535,5 @@ form p a {
     justify-content: center;
     width: 75px;
     height: 75px;
+    z-index: 1;
 }
