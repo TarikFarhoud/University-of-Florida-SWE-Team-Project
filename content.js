@@ -1,5 +1,7 @@
 import { registerUser, loginUser, isLoggedIn, logoutUser, getUserInfo } from "./firebase.js";
 
+import Award from "./awards.js";
+
 const monthConvert = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -28,7 +30,7 @@ function getNav() {
     };
 
     document.getElementById('buttonNavShop').onclick = function () {
-        switchPage('shop.html');
+        navShop();
     };
     document.getElementById('buttonNavShop').onmouseover = function () {
         document.getElementById('buttonNavShop').style.backgroundColor = '#848482';
@@ -76,6 +78,28 @@ function getNav() {
     document.getElementById('buttonNavLogin').onmouseout = function () {
         document.getElementById('buttonNavLogin').style.backgroundColor = '#A8A9AD';
     };
+}
+// Shop Content Script
+function navShop() {
+    switchPage('shop.html').then(() => {
+        document.getElementById('dolphin_award').innerHTML = Award.dolphinAward;
+        document.getElementById('treasure_award').innerHTML = Award.treasureAward;
+        document.getElementById('shell_award').innerHTML = Award.shell;
+        document.getElementById('lighthouse_award').innerHTML = Award.lighthouse;
+        document.getElementById('diver_award').innerHTML = Award.diver;
+        document.getElementById('turtle_award').innerHTML = Award.turtle;
+        document.getElementById('shark_award').innerHTML = Award.shark;
+        document.getElementById('flipflops_award').innerHTML = Award.flipflops;
+        document.getElementById('sunglasses_award').innerHTML = Award.sunglasses;
+        document.getElementById('crab_award').innerHTML = Award.crab;
+        document.getElementById('lobster_award').innerHTML = Award.lobster;
+        document.getElementById('mermaid_award').innerHTML = Award.mermaid;
+        document.getElementById('seahorse_award').innerHTML = Award.seahorse;
+        document.getElementById('surfboard_award').innerHTML = Award.surfboard;
+        document.getElementById('starfish_award').innerHTML = Award.starfish;
+        document.getElementById('snorkel_award').innerHTML = Award.snorkel;
+        document.getElementById('pearl_award').innerHTML = Award.pearl;
+    });
 }
 
 // Profile Content Script
