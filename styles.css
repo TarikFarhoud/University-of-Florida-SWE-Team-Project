@@ -43,6 +43,14 @@ h2 {
     text-align: center;
 }
 
+.homepage-header {
+    display: block;
+    margin: auto;
+    width: calc(100% - 100px);
+    height: 350px;
+    object-fit: cover;
+}
+
 .leaderboard-header {
     display: block;
     margin: auto;
@@ -356,14 +364,13 @@ form p a {
 }
 
 .shop_item {
-    width: 100px;
-    height: 150px;
-    padding: 20px;
+    padding: 10px;
     border: solid;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    justify-content: center;
     gap: 10px;
     color: white;
 }
