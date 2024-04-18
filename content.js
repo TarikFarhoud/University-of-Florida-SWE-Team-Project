@@ -83,13 +83,13 @@ function getNav() {
 function navPointBank() {
     switchPage('point_bank.html').then(() => {
         document.getElementById('point_submit').onclick = function () {
-            let plasticSize = document.getElementById('plastic_size');
-            let plasticType = document.getElementById('plastic_type');
+            let plasticSize = document.getElementById('plastic_size').value;
+            let plasticType = document.getElementById('plastic_type').value;
 
             // If plastic type is not known by user, grab object type and it will give
             // the most common plastic type for that object
             if (plasticType == "unknown") {
-                plasticType = document.getElementById('object_type');
+                plasticType = document.getElementById('object_type').value;
             }
 
             // Grab plastic multiplier
@@ -101,8 +101,9 @@ function navPointBank() {
             } else { plasticMultiplier = 1; }
 
             // Tally up points
-            let points = valueOf(plasticMultiplier * plasticSize);
+            let points = (plasticMultiplier * plasticSize);
 
+            // TESTING
             document.getElementById('point-tester').innerHTML = points;
         }
     });
