@@ -20,7 +20,7 @@ function getNav() {
     };
 
     document.getElementById('buttonNavPointBank').onclick = function () {
-        switchPage('point_bank.html');
+        navPointBank();        
     };
     document.getElementById('buttonNavPointBank').onmouseover = function () {
         document.getElementById('buttonNavPointBank').style.backgroundColor = '#848482';
@@ -79,6 +79,50 @@ function getNav() {
         document.getElementById('buttonNavLogin').style.backgroundColor = '#A8A9AD';
     };
 }
+
+function navPointBank() {
+    switchPage('point_bank.html').then(() => {
+        document.getElementById('point_submit').onclick = function () {
+            let plasticSize = document.getElementById('plastic_size').value;
+            let plasticType = document.getElementById('plastic_type').value;
+
+            if ((plasticSize != "null") && (plasticType != "null")) { // <- Checks if required info was given
+                // If plastic type is not known by user, grab object type and it will give
+                // the most common plastic type for that object
+                if (plasticType == "unknown") {
+                    plasticType = document.getElementById('object_type').value;
+                }
+
+                if (plasticType != "null") { // <- Checks if object_type was possibly "null"
+                    // Grab plastic multiplier
+                    let plasticMultiplier = 0;
+                    if ((plasticType == "pet") || (plasticType == "hdpe")) {
+                        plasticMultiplier = 3;
+                    } else if ((plasticType == "pvc") || (plasticType == "ldpe") || (plasticType == "pp")) {
+                        plasticMultiplier = 2;
+                    } else { plasticMultiplier = 1; }
+
+                    // Tally up points
+                    let points = (plasticMultiplier * plasticSize);
+
+                    if (confirm("You are submitting " + points + " points, is this correct?")) {
+                        // SUBMIT POINTS
+                    }
+                    else {
+                        points = 0;
+                    }
+                }
+                else {
+                    alert("If plastic type is unknown, you MUST include the object type!")
+                }
+            }
+            else {
+                alert("You have to enter a size and type!")
+            }
+        }
+    });
+}
+
 // Shop Content Script
 function navShop() {
     switchPage('shop.html').then(() => {
@@ -99,6 +143,22 @@ function navShop() {
         document.getElementById('starfish_award').innerHTML = Award.starfish;
         document.getElementById('snorkel_award').innerHTML = Award.snorkel;
         document.getElementById('pearl_award').innerHTML = Award.pearl;
+
+        
+        /*
+        // Confirm if user has enough points to purchase award
+        // TODO
+
+        // Confirm if user actually want to purchase TODO
+        let confirmMessage;
+        document.getElementById('shell_award').onclick = function () {
+            if (confirm("Are you sure you want to buy a \"Shell Award\"")) {
+                confirmMessage = "Congratulations, you bought a \"Shell Award\"";
+            }
+            else {
+                confirmMessage = "Purchase Cancelled"
+            }
+        }*/
     });
 }
 
