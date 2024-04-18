@@ -261,24 +261,30 @@ function navLeaderboard() {
             for (let j = 0; j < 4; ++j) {
 
                 let newCell = document.createElement('div');
-                let textnode = "null";
+                let node = "null";
 
                 // Align content in correct cell
                 if (j == 0) {
-                    textnode = document.createTextNode("ranking");
+                    node = document.createTextNode("ranking");
                 } else if (j == 1) {
-                    textnode = document.createTextNode("picture");
+                    node = document.createElement('img');
+                    node.src = 'images/default-profile.jpg';
+                    node.width = 100;
                 } else if (j == 2) {
-                    textnode = document.createTextNode("username");
+                    node = document.createTextNode("username");
                 } else {
-                    textnode = document.createTextNode("points");
+                    node = document.createTextNode("points");
                 }
 
                 // Add styling to current cell
-                newCell.appendChild(textnode);
+                newCell.appendChild(node);
                 newCell.style.backgroundColor = 'black';
                 newCell.style.color = '#d0b63b';
                 newCell.style.font = 'helvetica';
+                newCell.style.height = '100px';
+                newCell.style.display = 'flex';
+                newCell.style.alignItems = 'center';
+                newCell.style.justifyContent = 'center';
 
                 // Add the new cell/content
                 document.getElementById('leaderboard-frame').appendChild(newCell);
