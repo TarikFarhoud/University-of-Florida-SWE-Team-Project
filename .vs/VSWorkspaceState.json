@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
     "",
+    "\\dist",
+    "\\dist\\images",
     "\\images"
   ],
+  "SelectedNode": "\\styles.css",
   "PreviewInSolutionExplorer": false
 }

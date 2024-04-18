@@ -50,7 +50,7 @@ function getNav() {
     };
 
     document.getElementById('buttonNavLeaderboard').onclick = function () {
-        switchPage('leaderboard.html');
+        navLeaderboard();
     };
     document.getElementById('buttonNavLeaderboard').onmouseover = function () {
         document.getElementById('buttonNavLeaderboard').style.backgroundColor = '#848482';
@@ -247,6 +247,44 @@ function shopPurchase(pointsBalance, cost, reward) {
 
     // Return new balance
     return pointsBalance;
+}
+
+// Leaderboard Content Script
+function navLeaderboard() {
+    switchPage('leaderboard.html').then(() => {
+
+        // Generate leaderboard cells
+
+        // By rows = users
+        for (let i = 0; i < 50; ++i) {
+            // By columns
+            for (let j = 0; j < 4; ++j) {
+
+                let newCell = document.createElement('div');
+                let textnode = "null";
+
+                // Align content in correct cell
+                if (j == 0) {
+                    textnode = document.createTextNode("ranking");
+                } else if (j == 1) {
+                    textnode = document.createTextNode("picture");
+                } else if (j == 2) {
+                    textnode = document.createTextNode("username");
+                } else {
+                    textnode = document.createTextNode("points");
+                }
+
+                // Add styling to current cell
+                newCell.appendChild(textnode);
+                newCell.style.backgroundColor = 'black';
+                newCell.style.color = '#d0b63b';
+                newCell.style.font = 'helvetica';
+
+                // Add the new cell/content
+                document.getElementById('leaderboard-frame').appendChild(newCell);
+            }
+        }
+    });
 }
 
 // Profile Content Script

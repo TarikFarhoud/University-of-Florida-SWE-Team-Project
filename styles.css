@@ -403,7 +403,7 @@ form p a {
     background-color: lightgray;
 }
 
-.leaderboard_frame {
+#leaderboard-frame {
     display: grid;
     text-align: center;
     width: calc(100% - 114px);
@@ -417,51 +417,17 @@ form p a {
     border-block-start: none;
     border-width: 7px;
     border-color: #d0b63b;
+    grid-template-columns: repeat(4, auto);
+    background-color: #d0b63b;
+    gap: 2px; /* <- Internal border sizing */
 }
 
 .leaderboard_top {
+    background-color: black;
     grid-row: 1;
-    border-right: solid;
-    border-width: 1px;
-    border-block-end: solid;
-    border-block-end-width: 2px;
     font-size: 20pt;
     font-family: 'Engravers MT', 'Times New Roman', Times, serif;
-}
-
-.leaderboard_top_end {
-    grid-row: 1;
-    border-block-end: solid;
-    border-block-end-width: 2px;
-    font-size: 20pt;
-    font-family: 'Engravers MT', 'Times New Roman', Times, serif;
-}
-
-.leaderboard_frame .leaderboard-rank {
-    border-block-start: solid;
-    border-right: solid;
-    border-width: 1px;
-    grid-column: 1;
-}
-
-.leaderboard_frame .leaderboard-user {
-    border-block-start: solid;
-    border-right: solid;
-    border-width: 1px;
-    grid-column: 2;
-}
-
-.leaderboard_frame .leaderboard-awards {
-    border-block-start: solid;
-    border-right: solid;
-    border-width: 1px;
-    grid-column: 3;
-}
-
-.leaderboard_frame .leaderboard-points {
-    border-block-start: solid;
-    border-width: 1px;
-    grid-column: 4;
+    margin-bottom: 5px; /* <- This margin + gap = bottom border size */
 }
 
 .content-styles {
