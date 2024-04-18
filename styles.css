@@ -145,7 +145,7 @@ h2 {
     padding: 60px 60px 70px;
     background: transparent;
     border: 2px solid rgba(255, 255, 255, .2);
-    backdrop-filter: blur(20px);
+    backdrop-filter: brightness(75%);
     box-shadow: 0 0 10px rgba(0, 0, 0, .2);
     border-radius: 25px;
     top: 50%;
@@ -251,6 +251,11 @@ form p a {
     flex-direction: column;
     justify-content: center;
     gap: 20px;
+    margin: 20px;
+}
+
+.point_submit_form select {
+    text-align-last: center;
 }
 
 .wrapper-rec-info {
@@ -543,10 +548,4 @@ form p a {
     width: 75px;
     height: 75px;
     z-index: 1;
-}
-
-/* TESTING CSS */
-
-#point-tester {
-    text-align: center;
 }

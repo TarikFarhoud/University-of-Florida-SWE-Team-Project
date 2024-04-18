@@ -86,25 +86,39 @@ function navPointBank() {
             let plasticSize = document.getElementById('plastic_size').value;
             let plasticType = document.getElementById('plastic_type').value;
 
-            // If plastic type is not known by user, grab object type and it will give
-            // the most common plastic type for that object
-            if (plasticType == "unknown") {
-                plasticType = document.getElementById('object_type').value;
+            if ((plasticSize != "null") && (plasticType != "null")) { // <- Checks if required info was given
+                // If plastic type is not known by user, grab object type and it will give
+                // the most common plastic type for that object
+                if (plasticType == "unknown") {
+                    plasticType = document.getElementById('object_type').value;
+                }
+
+                if (plasticType != "null") { // <- Checks if object_type was possibly "null"
+                    // Grab plastic multiplier
+                    let plasticMultiplier = 0;
+                    if ((plasticType == "pet") || (plasticType == "hdpe")) {
+                        plasticMultiplier = 3;
+                    } else if ((plasticType == "pvc") || (plasticType == "ldpe") || (plasticType == "pp")) {
+                        plasticMultiplier = 2;
+                    } else { plasticMultiplier = 1; }
+
+                    // Tally up points
+                    let points = (plasticMultiplier * plasticSize);
+
+                    if (confirm("You are submitting " + points + " points, is this correct?")) {
+                        // SUBMIT POINTS
+                    }
+                    else {
+                        points = 0;
+                    }
+                }
+                else {
+                    alert("If plastic type is unknown, you MUST include the object type!")
+                }
             }
-
-            // Grab plastic multiplier
-            let plasticMultiplier = 0;
-            if ((plasticType == "pet") || (plasticType == "hdpe")) {
-                plasticMultiplier = 3;
-            } else if ((plasticType == "pvc") || (plasticType == "ldpe") || (plasticType == "pp")) {
-                plasticMultiplier = 2;
-            } else { plasticMultiplier = 1; }
-
-            // Tally up points
-            let points = (plasticMultiplier * plasticSize);
-
-            // TESTING
-            document.getElementById('point-tester').innerHTML = points;
+            else {
+                alert("You have to enter a size and type!")
+            }
         }
     });
 }
