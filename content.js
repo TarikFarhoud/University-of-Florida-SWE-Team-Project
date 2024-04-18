@@ -148,7 +148,6 @@ function navShop() {
 
         // Grab user's point balance
         document.getElementById('point-balance').innerHTML = pointsBalance;
-        document.getElementById('point-balance').style.color = "#168118"
 
         // Watch for reward purchases
         document.getElementById('dolphin').onclick = function () {
