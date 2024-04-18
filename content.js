@@ -144,22 +144,110 @@ function navShop() {
         document.getElementById('snorkel_award').innerHTML = Award.snorkel;
         document.getElementById('pearl_award').innerHTML = Award.pearl;
 
-        
-        /*
-        // Confirm if user has enough points to purchase award
-        // TODO
+        let pointsBalance = 1000;
 
-        // Confirm if user actually want to purchase TODO
-        let confirmMessage;
-        document.getElementById('shell_award').onclick = function () {
-            if (confirm("Are you sure you want to buy a \"Shell Award\"")) {
-                confirmMessage = "Congratulations, you bought a \"Shell Award\"";
-            }
-            else {
-                confirmMessage = "Purchase Cancelled"
-            }
-        }*/
+        // Grab user's point balance
+        document.getElementById('point-balance').innerHTML = pointsBalance;
+        document.getElementById('point-balance').style.color = "#168118"
+
+        // Watch for reward purchases
+        document.getElementById('dolphin').onclick = function () {
+            pointsBalance = shopPurchase(pointsBalance, 1000, "The Dolphin Award");
+            document.getElementById('point-balance').innerHTML = pointsBalance;
+        };
+        document.getElementById('treasure').onclick = function () {
+            pointsBalance = shopPurchase(pointsBalance, 500, "The Treasure Award");
+            document.getElementById('point-balance').innerHTML = pointsBalance;
+        };
+        document.getElementById('shell').onclick = function () {
+            pointsBalance = shopPurchase(pointsBalance, 150, "Shell Award");
+            document.getElementById('point-balance').innerHTML = pointsBalance;
+        };
+        document.getElementById('lighthouse').onclick = function () {
+            pointsBalance = shopPurchase(pointsBalance, 150, "Lighthouse Award");
+            document.getElementById('point-balance').innerHTML = pointsBalance;
+        };
+        document.getElementById('diver').onclick = function () {
+            pointsBalance = shopPurchase(pointsBalance, 150, "Diver Award");
+            document.getElementById('point-balance').innerHTML = pointsBalance;
+        };
+        document.getElementById('turtle').onclick = function () {
+            pointsBalance = shopPurchase(pointsBalance, 150, "Turtle Award");
+            document.getElementById('point-balance').innerHTML = pointsBalance;
+        };
+        document.getElementById('shark').onclick = function () {
+            pointsBalance = shopPurchase(pointsBalance, 150, "Shark Award");
+            document.getElementById('point-balance').innerHTML = pointsBalance;
+        };
+        document.getElementById('flip_flops').onclick = function () {
+            pointsBalance = shopPurchase(pointsBalance, 150, "Flip Flops Award");
+            document.getElementById('point-balance').innerHTML = pointsBalance;
+        };
+        document.getElementById('sunglasses').onclick = function () {
+            pointsBalance = shopPurchase(pointsBalance, 150, "Sunglasses Award");
+            document.getElementById('point-balance').innerHTML = pointsBalance;
+        };
+        document.getElementById('crab').onclick = function () {
+            pointsBalance = shopPurchase(pointsBalance, 150, "Crab Award");
+            document.getElementById('point-balance').innerHTML = pointsBalance;
+        };
+        document.getElementById('lobster').onclick = function () {
+            pointsBalance = shopPurchase(pointsBalance, 150, "Lobster Award");
+            document.getElementById('point-balance').innerHTML = pointsBalance;
+        };
+        document.getElementById('mermaid').onclick = function () {
+            pointsBalance = shopPurchase(pointsBalance, 150, "Mermaid Award");
+            document.getElementById('point-balance').innerHTML = pointsBalance;
+        };
+        document.getElementById('seahorse').onclick = function () {
+            pointsBalance = shopPurchase(pointsBalance, 150, "Seahorse Award");
+            document.getElementById('point-balance').innerHTML = pointsBalance;
+        };
+        document.getElementById('surfboard').onclick = function () {
+            pointsBalance = shopPurchase(pointsBalance, 150, "Surfboard Award");
+            document.getElementById('point-balance').innerHTML = pointsBalance;
+        };
+        document.getElementById('starfish').onclick = function () {
+            pointsBalance = shopPurchase(pointsBalance, 150, "Starfish Award");
+            document.getElementById('point-balance').innerHTML = pointsBalance;
+        };
+        document.getElementById('snorkel').onclick = function () {
+            pointsBalance = shopPurchase(pointsBalance, 150, "Snorkel Award");
+            document.getElementById('point-balance').innerHTML = pointsBalance;
+        };
+        document.getElementById('pearl').onclick = function () {
+            pointsBalance = shopPurchase(pointsBalance, 150, "Pearl Award");
+            document.getElementById('point-balance').innerHTML = pointsBalance;
+        };
     });
+}
+
+function shopPurchase(pointsBalance, cost, reward) {
+
+    // Check if user can afford the reward
+    if (cost > pointsBalance) {
+        alert("Sorry, you don't have enough points :(");
+        return pointsBalance;
+    }
+
+    // Confirm user wants to buy the reward
+    let confirmMessage = "null";
+    if (confirm("Are you sure you want to buy a \"" + reward + "\"?")) {
+        confirmMessage = "Congratulations, you bought a \"" + reward + "\"!";
+    }
+    else {
+        confirmMessage = "Purchase Cancelled";
+        return pointsBalance;
+    }
+
+    // Update balance
+    pointsBalance -= cost;
+
+    // Provide purchase message
+    alert(confirmMessage);
+
+    // Return new balance
+    return pointsBalance;
 }
 
 // Profile Content Script
