@@ -265,7 +265,7 @@ function navLeaderboard() {
 
                 // Align content in correct cell
                 if (j == 0) {
-                    node = document.createTextNode("ranking");
+                    node = document.createTextNode(i + 1);
                 } else if (j == 1) {
                     node = document.createElement('img');
                     node.src = 'images/default-profile.jpg';
@@ -279,8 +279,6 @@ function navLeaderboard() {
                 // Add styling to current cell
                 newCell.appendChild(node);
                 newCell.style.backgroundColor = 'black';
-                newCell.style.color = '#d0b63b';
-                newCell.style.font = 'helvetica';
                 newCell.style.height = '100px';
                 newCell.style.display = 'flex';
                 newCell.style.alignItems = 'center';

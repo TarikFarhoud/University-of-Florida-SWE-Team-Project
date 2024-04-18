@@ -251,7 +251,8 @@ form p a {
     flex-direction: column;
     justify-content: center;
     gap: 20px;
-    margin: 20px;
+    margin-bottom: 20px;
+    padding: 0;
 }
 
 .point_submit_form select {
@@ -419,6 +420,7 @@ form p a {
     border-color: #d0b63b;
     grid-template-columns: repeat(4, auto);
     background-color: #d0b63b;
+    font-size: 20pt;
     gap: 2px; /* <- Internal border sizing */
 }
 
