@@ -95,4 +95,13 @@ function isLoggedIn() {
   }
 }
 
-export { registerUser, loginUser, isLoggedIn, logoutUser, getUserInfo };
+async function submitPoints(amount) {
+  const response = await fetch(`https://us-central1-ufl-recycle-app.cloudfunctions.net/submitPoints`, {points: amount});
+
+  if (response.ok) {
+    return;
+  } else {
+    console.error('Unable to reach firebase server');
+  }
+}
+export { registerUser, loginUser, isLoggedIn, logoutUser, getUserInfo, submitPoints };

@@ -1,9 +1,10 @@
-import { auth } from "firebase-functions";
-import { initializeApp, firestore } from 'firebase-admin';
-initializeApp();
+/* eslint-disable no-undef */
+const functions = require("firebase-functions");
+const admin = require('firebase-admin');
+admin.initializeApp();
 
-export const addUserToFirestore = auth.user().onCreate((user) => {
-    const db = firestore();
+exports.addUserToFirestore = functions.auth.user().onCreate((user) => {
+    const db = admin.firestore();
     let currentDate = new Date();
 
     return db.collection('users').doc(user.uid).set({
@@ -12,7 +13,7 @@ export const addUserToFirestore = auth.user().onCreate((user) => {
         creationDate: currentDate,
         points: 0,
         items: 0,
-        
+
     })
         .then(() => {
             console.log('User added to Firestore');
@@ -21,4 +22,10 @@ export const addUserToFirestore = auth.user().onCreate((user) => {
         .catch((error) => {
             console.error('Error adding user to Firestore', error);
         });
+});
+
+exports.submitPoints = functions.https.onRequest((req, res) => {
+    console.log(req);
+
+    res.status(200).send('Test');
 });
