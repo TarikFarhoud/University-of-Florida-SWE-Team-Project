@@ -96,17 +96,22 @@ function isLoggedIn() {
 }
 
 async function submitPoints(amount) {
-  const response = await fetch(`https://us-central1-ufl-recycle-app.cloudfunctions.net/submitPoints`, {
-    method: 'GET',
-    headers: {
-      'points': amount
-    }
-  });
+  auth.currentUser.getIdToken(true).then(async (idToken) => {
+    const response = await fetch(`https://us-central1-ufl-recycle-app.cloudfunctions.net/submitPoints`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'points': amount,
+        'token': idToken
+      }
+    });
 
-  if (response.ok) {
-    return;
-  } else {
-    console.error('Unable to reach firebase server');
-  }
+    if (response.ok) {
+      return;
+    } else {
+      console.error('Unable to reach firebase server');
+    }
+  })
+
 }
 export { registerUser, loginUser, isLoggedIn, logoutUser, getUserInfo, submitPoints };
