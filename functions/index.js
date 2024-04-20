@@ -25,7 +25,7 @@ exports.addUserToFirestore = functions.auth.user().onCreate((user) => {
 });
 
 exports.submitPoints = functions.https.onRequest((req, res) => {
-    console.log(req);
+    console.log(req.headers);
 
     res.status(200).send('Test');
 });

@@ -1,6 +1,7 @@
 import { registerUser, loginUser, isLoggedIn, logoutUser, getUserInfo } from "./firebase.js";
 
 import Award from "./awards.js";
+import { submitPoints } from "./firebase.js";
 
 const monthConvert = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
@@ -82,7 +83,7 @@ function getNav() {
 
 function navPointBank() {
     switchPage('point_bank.html').then(() => {
-        document.getElementById('point_submit').onclick = function () {
+        document.getElementById('point_submit').onclick = async function () {
             let plasticSize = document.getElementById('plastic_size').value;
             let plasticType = document.getElementById('plastic_type').value;
 
@@ -107,6 +108,7 @@ function navPointBank() {
 
                     if (confirm("You are submitting " + points + " points, is this correct?")) {
                         // SUBMIT POINTS
+                        await submitPoints(points);
                     }
                     else {
                         points = 0;

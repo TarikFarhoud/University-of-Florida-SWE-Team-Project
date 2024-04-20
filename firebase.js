@@ -64,27 +64,27 @@ function logoutUser() {
 }
 
 async function getUserInfo() {
-      const user = auth.currentUser;
-      if (user) {
-        console.log(user);
-        console.log("Display Name:", user.displayName);
-        let data = { username: user.displayName };
+  const user = auth.currentUser;
+  if (user) {
+    console.log(user);
+    console.log("Display Name:", user.displayName);
+    let data = { username: user.displayName };
 
-        const docRef = doc(db, "users", auth.currentUser.uid);
-        const docSnap = await getDoc(docRef);
-        const docData = docSnap.data();
+    const docRef = doc(db, "users", auth.currentUser.uid);
+    const docSnap = await getDoc(docRef);
+    const docData = docSnap.data();
 
-        data['joinDate'] = docData.creationDate.toDate();
-        data['points'] = docData.points;
-        data['items'] = docData.items;
+    data['joinDate'] = docData.creationDate.toDate();
+    data['points'] = docData.points;
+    data['items'] = docData.items;
 
-        console.log("Data:", data);
+    console.log("Data:", data);
 
-        return data;
-      } else {
-        console.log("no");
-        return {};
-      }
+    return data;
+  } else {
+    console.log("no");
+    return {};
+  }
 }
 
 function isLoggedIn() {
@@ -96,7 +96,12 @@ function isLoggedIn() {
 }
 
 async function submitPoints(amount) {
-  const response = await fetch(`https://us-central1-ufl-recycle-app.cloudfunctions.net/submitPoints`, {points: amount});
+  const response = await fetch(`https://us-central1-ufl-recycle-app.cloudfunctions.net/submitPoints`, {
+    method: 'GET',
+    headers: {
+      'points': amount
+    }
+  });
 
   if (response.ok) {
     return;
