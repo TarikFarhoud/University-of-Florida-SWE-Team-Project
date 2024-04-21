@@ -77,6 +77,7 @@ async function getUserInfo() {
     data['joinDate'] = docData.creationDate.toDate();
     data['points'] = docData.points;
     data['items'] = docData.items;
+    data['awards'] = docData.awards;
 
     console.log("Data:", data);
 
@@ -112,6 +113,25 @@ async function submitPoints(amount) {
       console.error('Unable to reach firebase server');
     }
   })
-
 }
-export { registerUser, loginUser, isLoggedIn, logoutUser, getUserInfo, submitPoints };
+
+async function purchaseAward(itemIndex) {
+  auth.currentUser.getIdToken(true).then(async (idToken) => {
+    const response = await fetch(`https://us-central1-ufl-recycle-app.cloudfunctions.net/purchaseAward`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'award': itemIndex,
+        'token': idToken
+      }
+    });
+
+    if (response.ok) {
+      return;
+    } else {
+      console.error('Unable to reach firebase server');
+    }
+  })
+}
+
+export { registerUser, loginUser, isLoggedIn, logoutUser, getUserInfo, submitPoints, purchaseAward };
