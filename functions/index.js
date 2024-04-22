@@ -6,7 +6,7 @@ admin.initializeApp();
 
 const costConvert = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 500, 1000];
 
-exports.addUserToFirestore = functions.auth.user().onCreate((user) => {
+exports.addUserToFirestore = functions.auth.user().onCreate(async (user) => {
     const db = admin.firestore();
     let currentDate = new Date();
 
@@ -16,6 +16,7 @@ exports.addUserToFirestore = functions.auth.user().onCreate((user) => {
         email: user.email,
         creationDate: currentDate,
         points: 0,
+        totalPoints: 0,
         items: 0,
         awards: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     })
@@ -51,6 +52,7 @@ exports.submitPoints = functions.https.onRequest((req, res) => {
             }
             const userData = doc.data();
             const currentPoints = userData.points || 0;
+            const currentTotal = userData.totalPoints || 0;
             const currentItems = userData.items || 0;
             const additionalPoints = parseInt(req.headers.points, 10);
 
@@ -60,7 +62,7 @@ exports.submitPoints = functions.https.onRequest((req, res) => {
 
             const newPoints = currentPoints + additionalPoints;
             const newItems = currentItems + 1;
-            await userRef.update({ points: newPoints, items: newItems });
+            await userRef.update({ points: newPoints, totalPoints: currentTotal + additionalPoints, items: newItems });
 
             res.status(200).send(`Points updated: ${newPoints}`);
         } catch (error) {
@@ -110,12 +112,43 @@ exports.purchaseAward = functions.https.onRequest((req, res) => {
                 return res.status(400).send('Not enough points');
             }
 
-            await userRef.update({ awards: newAwards, points: newPoints});
+            await userRef.update({ awards: newAwards, points: newPoints });
 
             res.status(200).send(`Points updated: ${newPoints}`);
         } catch (error) {
             console.error('Error accessing Firestore or updating points', error);
             res.status(500).send('Error updating points');
+        }
+    });
+});
+
+exports.getLeaderboard = functions.https.onRequest((req, res) => {
+    cors(req, res, async () => {
+        if (req.method !== "POST") {
+            return res.status(405).send('Method Not Allowed');
+        }
+
+        const db = admin.firestore();
+        const users = db.collection('users');
+        try {
+            const leaderboardSnap = await users.orderBy('totalPoints', 'desc').get();
+            const leaderboard = [];
+
+            leaderboardSnap.forEach(doc => {
+                const userData = doc.data();
+                leaderboard.push({
+                    id: doc.id,
+                    username: userData.username,
+                    totalPoints: userData.totalPoints
+                });
+            });
+
+            console.log("Leaderboard Size:", leaderboard.length);
+
+            res.status(200).send({ leaderboard });
+        } catch (error) {
+            console.error('Error accessing Firestore or getting leaderboard', error);
+            res.status(500).send('Error getting leaderboard');
         }
     });
 });

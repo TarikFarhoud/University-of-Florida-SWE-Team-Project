@@ -1,8 +1,7 @@
 import { registerUser, loginUser, isLoggedIn, logoutUser, getUserInfo } from "./firebase.js";
 
 import Award from "./awards.js";
-import { submitPoints } from "./firebase.js";
-import { purchaseAward } from "./firebase.js";
+import { submitPoints, purchaseAward, getLeaderboard } from "./firebase.js";
 
 const monthConvert = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const costConvert = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 500, 1000];
@@ -24,7 +23,7 @@ function getNav() {
     };
 
     document.getElementById('buttonNavPointBank').onclick = function () {
-        navPointBank();        
+        navPointBank();
     };
     document.getElementById('buttonNavPointBank').onmouseover = function () {
         document.getElementById('buttonNavPointBank').style.backgroundColor = '#848482';
@@ -190,43 +189,48 @@ function shopPurchase(item, userData) {
 
 // Leaderboard Content Script
 function navLeaderboard() {
-    switchPage('leaderboard.html').then(() => {
+    switchPage('leaderboard.html').then(async () => {
 
         // Generate leaderboard cells
+        getLeaderboard().then(response => {
+            const leaderboard = response.leaderboard;
 
-        // By rows = users
-        for (let i = 0; i < 50; ++i) {
-            // By columns
-            for (let j = 0; j < 4; ++j) {
+            // By rows = users
+            for (let i = 0; i < 50 && i < leaderboard.length; ++i) {
+                // By columns
+                for (let j = 0; j < 4; ++j) {
 
-                let newCell = document.createElement('div');
-                let node = "null";
+                    let newCell = document.createElement('div');
+                    let node = "null";
 
-                // Align content in correct cell
-                if (j == 0) {
-                    node = document.createTextNode(i + 1);
-                } else if (j == 1) {
-                    node = document.createElement('img');
-                    node.src = 'images/default-profile.jpg';
-                    node.width = 100;
-                } else if (j == 2) {
-                    node = document.createTextNode("username");
-                } else {
-                    node = document.createTextNode("points");
+                    // Align content in correct cell
+                    if (j == 0) {
+                        node = document.createTextNode(i + 1);
+                    } else if (j == 1) {
+                        node = document.createElement('img');
+                        node.src = 'images/default-profile.jpg';
+                        node.width = 100;
+                    } else if (j == 2) {
+                        node = document.createTextNode(leaderboard.at(i).username);
+                    } else {
+                        node = document.createTextNode(leaderboard.at(i).totalPoints);
+                    }
+
+                    // Add styling to current cell
+                    newCell.appendChild(node);
+                    newCell.style.backgroundColor = 'black';
+                    newCell.style.height = '100px';
+                    newCell.style.display = 'flex';
+                    newCell.style.alignItems = 'center';
+                    newCell.style.justifyContent = 'center';
+
+                    // Add the new cell/content
+                    document.getElementById('leaderboard-frame').appendChild(newCell);
                 }
-
-                // Add styling to current cell
-                newCell.appendChild(node);
-                newCell.style.backgroundColor = 'black';
-                newCell.style.height = '100px';
-                newCell.style.display = 'flex';
-                newCell.style.alignItems = 'center';
-                newCell.style.justifyContent = 'center';
-
-                // Add the new cell/content
-                document.getElementById('leaderboard-frame').appendChild(newCell);
             }
-        }
+        });
+
+
     });
 }
 

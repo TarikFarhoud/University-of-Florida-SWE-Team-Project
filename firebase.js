@@ -134,4 +134,34 @@ async function purchaseAward(itemIndex) {
   })
 }
 
-export { registerUser, loginUser, isLoggedIn, logoutUser, getUserInfo, submitPoints, purchaseAward };
+async function getLeaderboard() {
+  return new Promise((resolve, reject) => {
+    auth.currentUser.getIdToken(true).then(async (idToken) => {
+      try {
+        const response = await fetch(`https://us-central1-ufl-recycle-app.cloudfunctions.net/getLeaderboard`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'token': idToken
+          }
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          resolve(data);
+        } else {
+          console.error('Unable to reach firebase server');
+          reject('Failed to fetch leaderboard: Server responded with status ' + response.status);
+        }
+      } catch (error) {
+        console.error('Network error', error);
+        reject('Network error: ' + error.message);
+      }
+    }).catch(error => {
+      console.error('Error getting ID token', error);
+      reject('Error getting ID token: ' + error.message);
+    });
+  });
+}
+
+export { registerUser, loginUser, isLoggedIn, logoutUser, getUserInfo, submitPoints, purchaseAward, getLeaderboard };
