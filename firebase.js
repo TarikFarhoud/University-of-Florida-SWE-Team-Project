@@ -15,11 +15,11 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const db = getFirestore(app);
 
+// Register a new user to the firebase server.
 function registerUser(inputUsername, inputEmail, inputPassword) {
   return new Promise((resolve) => {
     createUserWithEmailAndPassword(auth, inputEmail, inputPassword)
       .then(() => {
-        //const user = userCredential.user;
         updateProfile(auth.currentUser, {
           displayName: inputUsername
         }).then(() => {
@@ -42,6 +42,7 @@ function registerUser(inputUsername, inputEmail, inputPassword) {
 
 }
 
+// Login user with email and password.
 async function loginUser(inputEmail, inputPassword) {
   return new Promise((resolve) => {
     signInWithEmailAndPassword(auth, inputEmail, inputPassword)
@@ -59,10 +60,12 @@ async function loginUser(inputEmail, inputPassword) {
   })
 }
 
+// Sign user out of firebase.
 function logoutUser() {
   auth.signOut();
 }
 
+// Return user info from their firestore dataase document.
 async function getUserInfo() {
   const user = auth.currentUser;
   if (user) {
@@ -88,6 +91,7 @@ async function getUserInfo() {
   }
 }
 
+// Return whether the user is logged in.
 function isLoggedIn() {
   if (auth.currentUser) {
     return true;
@@ -96,6 +100,7 @@ function isLoggedIn() {
   }
 }
 
+// Submit a new recucled item to be added to their points.
 async function submitPoints(amount) {
   auth.currentUser.getIdToken(true).then(async (idToken) => {
     const response = await fetch(`https://us-central1-ufl-recycle-app.cloudfunctions.net/submitPoints`, {
@@ -115,6 +120,7 @@ async function submitPoints(amount) {
   })
 }
 
+// Purchase an award from the shop.
 async function purchaseAward(itemIndex) {
   auth.currentUser.getIdToken(true).then(async (idToken) => {
     const response = await fetch(`https://us-central1-ufl-recycle-app.cloudfunctions.net/purchaseAward`, {
@@ -134,6 +140,7 @@ async function purchaseAward(itemIndex) {
   })
 }
 
+// Return list of users in the firestore database in decreading order of total points.
 async function getLeaderboard() {
   return new Promise((resolve, reject) => {
     auth.currentUser.getIdToken(true).then(async (idToken) => {
