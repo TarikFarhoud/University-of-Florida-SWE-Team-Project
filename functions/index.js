@@ -12,7 +12,6 @@ exports.addUserToFirestore = functions.auth.user().onCreate(async (user) => {
 
     return db.collection('users').doc(user.uid).set({
         uid: user.uid,
-        username: user.displayName,
         email: user.email,
         creationDate: currentDate,
         points: 0,
@@ -132,20 +131,28 @@ exports.getLeaderboard = functions.https.onRequest((req, res) => {
         const users = db.collection('users');
         try {
             const leaderboardSnap = await users.orderBy('totalPoints', 'desc').get();
-            const leaderboard = [];
 
-            leaderboardSnap.forEach(doc => {
+            const fetchUserDetailsPromises = leaderboardSnap.docs.map(doc => {
                 const userData = doc.data();
-                leaderboard.push({
-                    id: doc.id,
-                    username: userData.username,
-                    totalPoints: userData.totalPoints
-                });
+                return admin.auth().getUser(userData.uid)
+                    .then(userRecord => {
+                        return {
+                            id: userData.uid,
+                            username: userRecord.displayName,
+                            totalPoints: userData.totalPoints
+                        };
+                    }).catch(error => {
+                        console.error('Error fetching user details', error);
+                        return null;
+                    });
             });
+
+            const resolvedLeaderboard = await Promise.all(fetchUserDetailsPromises);
+            const leaderboard = resolvedLeaderboard.filter(user => user !== null);
 
             console.log("Leaderboard Size:", leaderboard.length);
 
-            res.status(200).send({ leaderboard });
+            res.status(200).send({ leaderboard: leaderboard });
         } catch (error) {
             console.error('Error accessing Firestore or getting leaderboard', error);
             res.status(500).send('Error getting leaderboard');
