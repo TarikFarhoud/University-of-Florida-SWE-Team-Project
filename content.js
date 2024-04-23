@@ -271,12 +271,24 @@ function navProfile() {
 
             const userInfo = await getUserInfo();
 
+            const awards = userInfo.awards;
+
+            console.log("awards:", awards);
+
+            awards.forEach((amount, index) => {
+                console.log(amount, index);
+                if (amount > 0) {
+                    document.getElementById(`award${index + 1}`).style.display = 'flex';
+                    document.getElementById(`amount${index + 1}`).textContent = `x${amount}`;
+                }
+            })
+
             document.getElementById('username_placeholder').textContent = userInfo.username;
             document.getElementById('joined_placeholder').textContent = monthConvert[userInfo.joinDate.getMonth()] + " " + userInfo.joinDate.getDate() + " " + userInfo.joinDate.getFullYear();
             document.getElementById('points_placeholder').textContent = userInfo.points;
             document.getElementById('items_placeholder').textContent = userInfo.items;
 
-            
+
         }
     });
 }
