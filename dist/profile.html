@@ -1,61 +1,140 @@
 <h1>
     My Profile
 </h1>
-<div class="account-container">
-    <div class="profile-container">
-        <div class="user-row">
-            <div id="profile_picture" class="profile-picture">
-                <svg width="100px" height="100px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M5 21C5 17.134 8.13401 14 12 14C15.866 14 19 17.134 19 21M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z"
-                        stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
+
+<div class="profile">
+    <div class="account-container">
+        <div class="profile-container">
+            <div class="user-row">
+                <div id="profile_picture" class="profile-picture">
+                    <svg width="100px" height="100px" viewBox="0 0 24 24" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M5 21C5 17.134 8.13401 14 12 14C15.866 14 19 17.134 19 21M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z"
+                            stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+
+                <p id="username_placeholder" class="username-container">
+                    Unknown User
+                </p>
+
+                <div class="stats-column">
+                    Joined:
+                    <p id="joined_placeholder" class="joined-container"></p>
+                </div>
+
             </div>
 
-            <p id="username_placeholder" class="username-container">
-                Unknown User
-            </p>
-
-            <div class="stats-column">
-                Joined:
-                <p id="joined_placeholder" class="joined-container"></p>
+            <div class="stats-row">
+                <div class="stats-column">
+                    Points
+                    <p id="points_placeholder">
+                        0
+                    </p>
+                </div>
+                <div class="stats-column">
+                    Items Recycled
+                    <p id="items_placeholder">
+                        0
+                    </p>
+                </div>
+                <div class="stats-column">
+                    Global Ranking
+                    <p id="ranking_placeholder">
+                        0
+                    </p>
+                </div>
             </div>
-
         </div>
 
-        <div class="stats-row">
-            <div class="stats-column">
-                Points
-                <p id="points_placeholder">
-                    0
-                </p>
+        <h2>Awards</h2>
+
+        <div class="award_frame">
+            <div class="shop_item">
+                <div id="shell_award" class="award"></div>
+                <p>Shell</p>
             </div>
-            <div class="stats-column">
-                Items Recycled
-                <p id="items_placeholder">
-                    0
-                </p>
+            <div class="shop_item">
+                <div id="lighthouse_award" class="award"></div>
+                <p>Lighthouse</p>
             </div>
-            <div class="stats-column">
-                Global Ranking
-                <p id="ranking_placeholder">
-                    0
-                </p>
+            <div class="shop_item">
+                <div id="diver_award" class="award"></div>
+                <p>Diver</p>
+            </div>
+            <div class="shop_item">
+                <div id="turtle_award" class="award"></div>
+                <p>Turtle</p>
+            </div>
+            <div class="shop_item">
+                <div id="shark_award" class="award"></div>
+                <p>Shark</p>
+            </div>
+            <div class="shop_item">
+                <div id="flipflops_award" class="award"></div>
+                <p>Flip Flops</p>
+            </div>
+            <div class="shop_item">
+                <div id="sunglasses_award" class="award"></div>
+                <p>Sunglasses</p>
+            </div>
+            <div class="shop_item">
+                <div id="crab_award" class="award"></div>
+                <p>Crab</p>
+            </div>
+            <div class="shop_item">
+                <div id="lobster_award" class="award"></div>
+                <p>Lobster</p>
+            </div>
+            <div class="shop_item">
+                <div id="mermaid_award" class="award"></div>
+                <p>Mermaid</p>
+            </div>
+            <div class="shop_item">
+                <div id="seahorse_award" class="award"></div>
+                <p>Seahorse</p>
+            </div>
+            <div class="shop_item">
+                <div id="surfboard_award" class="award"></div>
+                <p>Surfboard</p>
+            </div>
+            <div class="shop_item">
+                <div id="starfish_award" class="award"></div>
+                <p>Starfish</p>
+            </div>
+            <div class="shop_item">
+                <div id="snorkel_award" class="award"></div>
+                <p>Snorkel</p>
+            </div>
+            <div class="shop_item">
+                <div id="pearl_award" class="award"></div>
+                <p>Pearl</p>
+            </div>
+            <div class="shop_item">
+                <div id="treasure_award" class="award"></div>
+                <p>The Treasure Award</p>
+            </div>
+            <div class="shop_item">
+                <div id="dolphin_award" class="award"></div>
+                <p>The Dolphin Award</p>
+            </div>
+
+            <div class="button-user-input-layout">
+                <button id="logout_button">
+                    Logout
+                </button>
             </div>
         </div>
     </div>
-    <div class="button-user-input-layout">
-        <button id="logout_button">
-            Logout
-        </button>
-    </div>
-</div>
-
-<div class="logged-out-container">
-    You are signed out. Click the button below to login:
-    <div class="button-user-input-layout">
-        <button id="login_button">
-            Login
-        </button>
+    <div class="logged-out-container">
+        <h3>
+            You are signed out. Click the button below to login:
+        </h3>
+        <div class="button-user-input-layout">
+            <button id="login_button">
+                Login
+            </button>
+        </div>
     </div>
 </div>

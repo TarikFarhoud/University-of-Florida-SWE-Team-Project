@@ -238,22 +238,45 @@ function navLeaderboard() {
 function navProfile() {
     switchPage('profile.html').then(async () => {
         if (!isLoggedIn()) {
+            console.log('Logged out');
             document.querySelector('.account-container').style.display = 'none';
             document.getElementById('login_button').onclick = function () {
                 navLogin();
             }
         } else {
+            console.log('Logged in');
             document.querySelector('.logged-out-container').style.display = 'none';
             document.getElementById('logout_button').onclick = function () {
                 logoutUser();
                 navLogin();
             }
+
+            document.getElementById('shell_award').innerHTML = Award.shell;
+            document.getElementById('lighthouse_award').innerHTML = Award.lighthouse;
+            document.getElementById('diver_award').innerHTML = Award.diver;
+            document.getElementById('turtle_award').innerHTML = Award.turtle;
+            document.getElementById('shark_award').innerHTML = Award.shark;
+            document.getElementById('flipflops_award').innerHTML = Award.flipflops;
+            document.getElementById('sunglasses_award').innerHTML = Award.sunglasses;
+            document.getElementById('crab_award').innerHTML = Award.crab;
+            document.getElementById('lobster_award').innerHTML = Award.lobster;
+            document.getElementById('mermaid_award').innerHTML = Award.mermaid;
+            document.getElementById('seahorse_award').innerHTML = Award.seahorse;
+            document.getElementById('surfboard_award').innerHTML = Award.surfboard;
+            document.getElementById('starfish_award').innerHTML = Award.starfish;
+            document.getElementById('snorkel_award').innerHTML = Award.snorkel;
+            document.getElementById('pearl_award').innerHTML = Award.pearl;
+            document.getElementById('treasure_award').innerHTML = Award.treasureAward;
+            document.getElementById('dolphin_award').innerHTML = Award.dolphinAward;
+
             const userInfo = await getUserInfo();
 
             document.getElementById('username_placeholder').textContent = userInfo.username;
             document.getElementById('joined_placeholder').textContent = monthConvert[userInfo.joinDate.getMonth()] + " " + userInfo.joinDate.getDate() + " " + userInfo.joinDate.getFullYear();
             document.getElementById('points_placeholder').textContent = userInfo.points;
             document.getElementById('items_placeholder').textContent = userInfo.items;
+
+            
         }
     });
 }

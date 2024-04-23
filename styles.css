@@ -317,7 +317,6 @@ form p a {
     position: relative;
 }
 
-
 .card-rec-info:hover .info-rec-info {
     transform: translateY(0px);
     opacity: 1;
@@ -358,6 +357,17 @@ form p a {
     background-image: url(images/coastal.jpg);
     background-size: cover;
     padding: 150px;
+}
+
+.award_frame {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    background-color: grey;
+    gap: 20px;
+    background-size: cover;
+    padding: 15px;
 }
 
 .balance_frame {
@@ -442,6 +452,7 @@ form p a {
 .account-container {
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .profile-container {
@@ -524,4 +535,8 @@ form p a {
     width: 75px;
     height: 75px;
     z-index: 1;
+}
+
+.profile {
+    display: flex;
 }

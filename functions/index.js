@@ -11,13 +11,13 @@ exports.addUserToFirestore = functions.auth.user().onCreate(async (user) => {
     let currentDate = new Date();
 
     return db.collection('users').doc(user.uid).set({
-        uid: user.uid,
-        email: user.email,
-        creationDate: currentDate,
-        points: 0,
-        totalPoints: 0,
-        items: 0,
-        awards: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        uid: user.uid, // Unique ID for the user
+        email: user.email, // Email of the user
+        creationDate: currentDate, // Date user created their account
+        points: 0, // Current points useable in the shop
+        totalPoints: 0, // Total points earned
+        items: 0, // Total items recycled
+        awards: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], // Award array, stores the number of each award the user has purchased
     })
         .then(() => {
             console.log('User added to Firestore');
